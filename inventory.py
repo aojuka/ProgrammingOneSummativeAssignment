@@ -6,6 +6,7 @@ class Inventory:
         self.products = {}
         self.low_stock_limit = pc.Product.validate_quantity(low_stock_limit) 
 
+
     def add_product(self,product):
         """ Adds one one product object to the inventory """
         if not isinstance(product, pc.Product):
