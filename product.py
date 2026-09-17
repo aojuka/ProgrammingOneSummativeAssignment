@@ -13,11 +13,11 @@ class Product:
         self.product_id=self._validate_id(product_id)
         self.product_name=self._validate_required_text(product_name, "Product name")
         self.category=self._clean_optional_text(category)
-        self.brand=self._clean_optional_text(category)
+        self.brand=self._clean_optional_text(brand)
         self.size=self._clean_optional_text(size)
         self.supplier=self._clean_optional_text(supplier)
         self.price=self._validate_price(price)
-        self.quantity=self.validate_quantity(quantity)
+        self.quantity=self._validate_quantity(quantity)
         self.entry_date=(self._validate_date(entry_date) if entry_date else datetime.now().strftime(self.DATE_FORMAT))
         self.expiry_date=self._validate_date(expiry_date) if expiry_date else None
 
