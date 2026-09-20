@@ -1,7 +1,7 @@
 import pytest
 import pandas as pd
 from decimal import Decimal
-from sales import Sales
+from sales import Sales  # type: ignore[reportMissingImports]
 
 # We inject 'mocker' directly into our fixtures
 @pytest.fixture
@@ -26,7 +26,7 @@ def sales_app(mocker, mock_inventory):
     """Initializes the Sales class with the mocked inventory and product."""
     # mocker.patch handles the cleanup automatically after the test finishes
     mock_product_class = mocker.patch('sales.Product')
-    mock_product_class.validate_quantity.side_effect = lambda q: q  
+    mock_product_class._validate_quantity.side_effect = lambda q: q  
     
     return Sales(inventory=mock_inventory)
 

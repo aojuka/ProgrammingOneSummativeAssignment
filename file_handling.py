@@ -68,8 +68,8 @@ class FileHandling:
         dataframe = self._read_csv(self.sales_file, Sales.COLUMNS)
         for index, row in dataframe.iterrows():
             try:
-                sale_id= Product.validate_quantity(row["sale_id"])
-                quantity= Product.validate_quantity(row["quantity"])
+                sale_id= Product._validate_quantity(row["sale_id"])
+                quantity= Product._validate_quantity(row["quantity"])
                 price= Product._validate_price(row["unit_price"])
                 subtotal= parse_money(row["subtotal"], "Subtotal")
                 if sale_id == 0 or quantity== 0 or subtotal != price* quantity:
@@ -85,7 +85,7 @@ class FileHandling:
         dataframe= self._read_csv(self.income_file, Finance.COLUMNS)
         for index, row in dataframe.iterrows():
             try:
-                if Product.validate_quantity(row["sale_id"]) ==0:
+                if Product._validate_quantity(row["sale_id"]) ==0:
                     raise ValueError("Sale ID must be positive.")
                 if parse_money(row["amount"], "Income") <= 0:
                     raise ValueError("Income must be positive.")

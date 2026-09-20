@@ -13,7 +13,7 @@ class Product:
         self.product_id=self._validate_id(product_id)
         self.product_name=self._validate_required_text(product_name, "Product name")
         self.category=self._clean_optional_text(category)
-        self.brand=self._clean_optional_text(category)
+        self.brand=self._clean_optional_text(brand)
         self.size=self._clean_optional_text(size)
         self.supplier=self._clean_optional_text(supplier)
         self.price=self._validate_price(price)
@@ -71,5 +71,6 @@ class Product:
         try:
             datetime.strptime(date_string, cls.DATE_FORMAT)
         except (ValueError, TypeError):
+            raise ValueError("Date must be in DD/MM/YYYY format.")
             raise ValueError(f"Date must be in {cls.DATE_FORMAT} format.")
         return date_string
